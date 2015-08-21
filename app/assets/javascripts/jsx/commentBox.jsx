@@ -5,6 +5,9 @@ var CommentBox = React.createClass({
       dataType: 'json',
       cache: false,
       success: function(data) {
+        if ((this.state.data.length > 0) && (data.length > 0)) {
+          alertify.success("Comments loaded successfully.");
+        }
         this.setState({data: data});
       }.bind(this),
       error: function(xhr, status, err) {
@@ -42,12 +45,16 @@ var CommentBox = React.createClass({
   },
   componentDidMount: function() {
     this.loadCommentsFromServer();
-    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+    // setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
+  refreshButtonClick: function () {
+    this.loadCommentsFromServer();
   },
   render: function() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
+        <a onClick={this.refreshButtonClick}>Refresh</a>
         <CommentList data={this.state.data} />
         <CommentForm onCommentSubmit={this.handleCommentSubmit} />
       </div>
