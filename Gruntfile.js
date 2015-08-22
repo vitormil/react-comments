@@ -9,7 +9,9 @@ module.exports = function (grunt) {
     "grunt-bower-install-simple"
   ];
 
-  var devTasks = [];
+  var devTasks = [
+    "grunt-contrib-watch"
+  ];
 
   /* React
    * https://www.npmjs.com/package/grunt-react
@@ -42,6 +44,16 @@ module.exports = function (grunt) {
     }
   };
 
+  /* Watch
+   * https://github.com/gruntjs/grunt-contrib-watch
+   ----------------------------------------------------------------------- */
+  config.watch = {};
+
+  config.watch.react = {
+    files: ["./app/assets/javascripts/**/*.jsx"],
+    tasks: ["react"]
+  };
+
  /* Bower
    * https://github.com/rse/grunt-bower-install-simple
    ----------------------------------------------------------------------- */
@@ -66,6 +78,8 @@ module.exports = function (grunt) {
   /* Tasks
    ----------------------------------------------------------------------- */
   grunt.registerTask("bower", ["bower-install-simple"]);
+
+  grunt.registerTask("dev", ["react", "watch:react"]);
 
   grunt.registerTask("default", ["react"]);
 

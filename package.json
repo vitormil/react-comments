@@ -16,10 +16,13 @@
     "url": "https://github.com/vitormil/react-comments/issues"
   },
   "homepage": "https://github.com/vitormil/react-comments",
-  "devDependencies": {
+  "dependencies": {
     "grunt": "^0.4.5",
     "grunt-bower-install-simple": "^1.1.4",
     "grunt-browserify": "^4.0.0",
     "grunt-react": "^0.12.2"
+  },
+  "devDependencies": {
+    "grunt-contrib-watch": "0.6.1"
   }
 }
